@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>My Love 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(#ffdde1, #ee9ca7);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3.5em;
+      margin-top: 1em;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 30px #ff69b4, 0 0 50px #ff1493;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 30px #ff9, 0 0 40px #f06; }
+      to { text-shadow: 0 0 20px #f99, 0 0 40px #ff69b4, 0 0 60px #ff1493; }
+    }
+
+    .message {
+      text-align: center;
+      margin: 2em auto;
+      font-size: 1.7em;
+      font-weight: 600;
+      max-width: 700px;
+      padding: 1.5em;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 25px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2em 0;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #fff;
+    }
+
+    .button {
+      background: #ff69b4;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 1em;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 10px #ff1493;
+    }
+
+    .button:hover {
+      background: #ff1493;
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      background: red;
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      animation: fall 10s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 100px;
+      height: 90px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -50px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% { top: -100px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+
+    /* Parola screen */
+    #passwordScreen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(#ee9ca7, #ffdde1);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #passwordScreen h2 {
+      color: #fff;
+      font-size: 2em;
+      text-shadow: 0 0 10px #fff;
+      margin-bottom: 20px;
+    }
+
+    #passwordInput {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      text-align: center;
+      outline: none;
+    }
+
+    #submitPassword {
+      margin-top: 15px;
+      background: #ff69b4;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    #error {
+      color: yellow;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    /* ❤️ Inimioară sus dreapta */
+    #hintHeart {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 2em;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); color: #ff69b4; }
+      100% { transform: scale(1); }
+    }
+
+    #hintBox {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: bold;
+      display: none;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Parolă cu inimioară și indiciu -->
+  <div id="passwordScreen">
+    <div id="hintHeart" onclick="toggleHint()">❤️</div>
+    <div id="hintBox">📅 Ziua: 24<br>📅 Luna: 09<br>📅 Anul: 2024</div>
+
+    <h2>Introduce parola pentru a continua 💖</h2>
+    <input type="password" id="passwordInput" placeholder="Parola..." />
+    <button id="submitPassword">💘</button>
+    <div id="error"></div>
+  </div>
+
+  <!-- Conținutul site-ului (ascuns inițial) -->
+  <div id="siteContent" style="display: none;">
+    <h1>My Love 💖</h1>
+
+    <div class="message">
+      Pentru cea mai frumoasă fată din lume,<br>
+      Vreau să-ți spun că te iubesc enorm și că în fiecare zi îți mulțumesc că exiști! 💕
+    </div>
+
+    <div style="text-align: center;">
+      <button class="button" onclick="alert('Te iubesc mult! ❤️')">❤️</button>
+    </div>
+
+    <div class="gallery">
+      <img src="poza1.jpg" alt="Noi doi">
+      <img src="poza2.jpg" alt="Amintire frumoasă">
+      <img src="poza3.jpg" alt="Dragostea noastră">
+    </div>
+
+    <div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="heart" style="left: 50%; animation-delay: 4s;"></div>
+    <div class="heart" style="left: 70%; animation-delay: 6s;"></div>
+    <div class="heart" style="left: 90%; animation-delay: 8s;"></div>
+	
+  </div>
+
+  <script>
+    const correctPassword = "24092024";
+
+    document.getElementById("submitPassword").onclick = function () {
+      const parola = document.getElementById("passwordInput").value;
+      if (parola === correctPassword) {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("siteContent").style.display = "block";
+      } else {
+        document.getElementById("error").textContent = "Parola este greșită! 😢";
+      }
+    };
+
+    function toggleHint() {
+      const box = document.getElementById("hintBox");
+      box.style.display = (box.style.display === "block") ? "none" : "block";
+    }
+  </script>
+
+</body>
+</html>  
